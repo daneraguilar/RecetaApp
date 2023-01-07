@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_navigation"
+    app:startDestination="@id/detailFragment">
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.detail.ui.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <deepLink app:uri="android-app://recetaapp.com/detail/{uuid}"/>
+        <argument
+            android:name="uuid"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment">
+            <argument
+                android:name="map_info"
+                app:argType="com.example.detail.domain.entity.MapInfo" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.detail.ui.MapsFragment"
+        android:label="MapsFragment" >
+        <argument
+            android:name="map_info"
+            app:argType="com.example.detail.domain.entity.MapInfo" />
+    </fragment>
+</navigation>

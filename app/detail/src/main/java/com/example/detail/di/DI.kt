@@ -5,8 +5,8 @@ import com.example.common.NetworkManagerState
 import com.example.common.NetworkManagerStateImpl
 import com.example.detail.data.RecipeDetailRepositoryImpl
 import com.example.detail.data.datasource.remote.RecipeDetailRemote
-import com.example.detail.data.datasource.remote.RecipeDetailService
 import com.example.detail.data.datasource.remote.RecipeDetailRemoteImpl
+import com.example.detail.data.datasource.remote.RecipeDetailService
 import com.example.detail.domain.GetRecipeDetailUseCase
 import com.example.detail.domain.RecipeDetailRepository
 import com.example.detail.ui.DetailViewModel
@@ -33,7 +33,7 @@ val DetailModule = module {
 
     single<NetworkManagerState>(override = true) { NetworkManagerStateImpl(androidContext()) }
     single<RecipeDetailRemote> { RecipeDetailRemoteImpl(get()) }
-    single<RecipeDetailRepository> { RecipeDetailRepositoryImpl(get(),get()) }
+    single<RecipeDetailRepository> { RecipeDetailRepositoryImpl(get(), get()) }
 
     single { GetRecipeDetailUseCase(get()) }
     viewModel { DetailViewModel(get()) }

@@ -9,8 +9,8 @@
         android:id="@+id/detailFragment"
         android:name="com.example.detail.ui.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
-        <deepLink app:uri="android-app://recetaapp.com/detail/{uuid}"/>
+        tools:layout="@layout/fragment_detail">
+        <deepLink app:uri="android-app://recetaapp.com/detail/{uuid}" />
         <argument
             android:name="uuid"
             android:defaultValue=""
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.detail.ui.MapsFragment"
-        android:label="MapsFragment" >
+        android:label="MapsFragment">
         <argument
             android:name="map_info"
             app:argType="com.example.detail.domain.entity.MapInfo" />

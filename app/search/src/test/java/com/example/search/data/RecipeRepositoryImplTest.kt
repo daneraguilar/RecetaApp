@@ -1,6 +1,8 @@
 package com.example.search.data
 
 import com.example.common.NetworkManagerState
+import com.example.common.Result
+import com.example.common.ResultRepositoryError
 import com.example.search.SearchTestFactory
 import com.example.search.data.datasource.RecipeRemote
 import junit.framework.TestCase
@@ -10,8 +12,6 @@ import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
-import com.example.common.Result
-import com.example.common.ResultRepositoryError
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)

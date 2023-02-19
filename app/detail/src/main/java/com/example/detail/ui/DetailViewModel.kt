@@ -14,7 +14,7 @@ import kotlinx.coroutines.*
 class DetailViewModel(
     private val _getRecipesUseCase: GetRecipeDetailUseCase,
     private val _dispatcher: CoroutineDispatcher = Dispatchers.IO
-): ViewModel() {
+) : ViewModel() {
 
     private var _job: Job? = null
     private val _uiState = MutableLiveData<DetailUIState>()

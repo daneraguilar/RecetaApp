@@ -8,8 +8,7 @@ import com.example.search.domain.RecipeResultRepository
 
 class RecipeRemoteImpl(
     private val _recipeService: RecipeService
-)
-: RecipeRemote {
+) : RecipeRemote {
     override suspend fun getRecipes(): RecipeResultRepository {
         try {
             val result = _recipeService.getRecipes()

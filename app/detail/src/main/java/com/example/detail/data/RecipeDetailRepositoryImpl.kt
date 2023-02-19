@@ -1,14 +1,16 @@
 package com.example.detail.data
 
-import com.example.common.*
+import com.example.common.NetworkManagerState
+import com.example.common.Result
+import com.example.common.ResultRepositoryError
 import com.example.detail.data.datasource.remote.RecipeDetailRemote
 import com.example.detail.domain.RecipeDetailRepository
 import com.example.detail.domain.RecipeDetailResultRepository
 
-class RecipeDetailRepositoryImpl (
+class RecipeDetailRepositoryImpl(
     private val _recipeService: RecipeDetailRemote,
     private val _networkManagerState: NetworkManagerState,
-): RecipeDetailRepository {
+) : RecipeDetailRepository {
     override suspend fun getRecipe(uuid: String): RecipeDetailResultRepository {
         return when {
             _networkManagerState.isConnected() -> _recipeService.getRecipes(uuid)

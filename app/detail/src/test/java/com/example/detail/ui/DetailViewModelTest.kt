@@ -22,7 +22,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-internal class DetailViewModelTest: TestCase() {
+internal class DetailViewModelTest : TestCase() {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 

@@ -17,7 +17,7 @@ import retrofit2.Response
 
 
 @RunWith(MockitoJUnitRunner::class)
-internal class RecipeRemoteImplTest: TestCase() {
+internal class RecipeRemoteImplTest : TestCase() {
 
     @Mock
     private lateinit var _recipeDetailService: RecipeDetailService
@@ -31,9 +31,10 @@ internal class RecipeRemoteImplTest: TestCase() {
 
             val uuid = "c0e7f934-8c44-11ed-a1eb-0242ac120004"
             val recipe = DetailTestFactory.getRecipeDetail()
-            Mockito.`when`(_recipeDetailService.getRecipe(uuid)).thenReturn(Response.success(recipe))
+            Mockito.`when`(_recipeDetailService.getRecipe(uuid))
+                .thenReturn(Response.success(recipe))
 
-            when (val result =_recipeDetailRemote.getRecipes(uuid)) {
+            when (val result = _recipeDetailRemote.getRecipes(uuid)) {
 
                 is Result.Success -> {
                     assertEquals(result.value?.uuid, uuid)
@@ -43,13 +44,15 @@ internal class RecipeRemoteImplTest: TestCase() {
 
         }
     }
+
     @Test
     fun `when get recipes  with error un authorized return default message`() {
         runBlocking {
             val uuid = "c0e7f934-8c44-11ed-a1eb-0242ac120004"
-            Mockito.`when`(_recipeDetailService.getRecipe(uuid)).thenReturn(Response.error(401,DetailTestFactory.rawResponse()))
+            Mockito.`when`(_recipeDetailService.getRecipe(uuid))
+                .thenReturn(Response.error(401, DetailTestFactory.rawResponse()))
 
-            when (val result =_recipeDetailRemote.getRecipes(uuid)) {
+            when (val result = _recipeDetailRemote.getRecipes(uuid)) {
 
                 is Result.Success -> {
                     assert(false)
@@ -59,13 +62,15 @@ internal class RecipeRemoteImplTest: TestCase() {
 
         }
     }
+
     @Test
     fun `when get recipes  with error un know return un know error`() {
         val uuid = "c0e7f934-8c44-11ed-a1eb-0242ac120004"
         runBlocking {
-            Mockito.`when`(_recipeDetailService.getRecipe(uuid)).thenReturn(Response.error(500,DetailTestFactory.rawResponse()))
+            Mockito.`when`(_recipeDetailService.getRecipe(uuid))
+                .thenReturn(Response.error(500, DetailTestFactory.rawResponse()))
 
-            when (val result =_recipeDetailRemote.getRecipes(uuid)) {
+            when (val result = _recipeDetailRemote.getRecipes(uuid)) {
 
                 is Result.Success -> {
                     assert(false)

@@ -1,6 +1,5 @@
 package com.example.search.ui
 
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,10 +16,9 @@ import com.example.search.R
 import com.example.search.databinding.FragmentSearchBinding
 import com.example.search.ui.adapter.RecipeAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.net.URLEncoder
 
 
-class SearchFragment: BaseFragment()  {
+class SearchFragment : BaseFragment() {
 
     private val _searchViewModel: SearchViewModel by viewModel()
     private lateinit var _binding: FragmentSearchBinding
@@ -36,16 +34,16 @@ class SearchFragment: BaseFragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater,container,false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         setView()
-        _searchViewModel.uiState.observe(requireActivity(),::updateUI)
+        _searchViewModel.uiState.observe(requireActivity(), ::updateUI)
         return _binding.root
     }
 
     private fun setView() {
         _recipesAdapter = RecipeAdapter(::goToDetail)
         _binding.swipeRefresh.setOnRefreshListener {
-            if(_binding.swipeRefresh.isRefreshing) _searchViewModel.getRecipes()
+            if (_binding.swipeRefresh.isRefreshing) _searchViewModel.getRecipes()
         }
         with(_binding) {
             recyclerViewSearchResults.adapter = _recipesAdapter
@@ -70,6 +68,7 @@ class SearchFragment: BaseFragment()  {
             })
         }
     }
+
     private fun updateUI(screenState: SearchUIState) {
         when (screenState) {
             is SearchUIState.Error -> showMessage(screenState.message)
@@ -80,6 +79,7 @@ class SearchFragment: BaseFragment()  {
         }
 
     }
+
     private fun showEmptyMessage(isEmpty: Boolean) {
         if (!isEmpty) {
             _binding.recyclerViewSearchResults.visible = true
@@ -90,19 +90,21 @@ class SearchFragment: BaseFragment()  {
         }
 
     }
+
     private fun showMessage(message: String) {
-        Toast.makeText(requireContext(),message,Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
+
     private fun showOrHideLoading(visible: Boolean) {
-        if(_binding.swipeRefresh.isRefreshing) _binding.swipeRefresh.isRefreshing = false
+        if (_binding.swipeRefresh.isRefreshing) _binding.swipeRefresh.isRefreshing = false
         _binding.progressBar.visible = visible
     }
 
-    private fun goToDetail(uuid: String){
+    private fun goToDetail(uuid: String) {
         val args = Bundle()
-        args.putString("uuid",uuid)
+        args.putString("uuid", uuid)
         val request = NavDeepLinkRequest.Builder
-            .fromUri(getString(R.string.deep_link_search_to_detail,uuid).toUri())
+            .fromUri(getString(R.string.deep_link_search_to_detail, uuid).toUri())
             .build()
         findNavController().navigate(request)
     }

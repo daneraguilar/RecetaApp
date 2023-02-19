@@ -6,10 +6,9 @@ import com.example.common.Result
 import com.example.common.ResultRepositoryError
 import com.example.detail.domain.RecipeDetailResultRepository
 
-class RecipeDetailRemoteImpl (
+class RecipeDetailRemoteImpl(
     private val _recipeService: RecipeDetailService
-)
-    : RecipeDetailRemote {
+) : RecipeDetailRemote {
     override suspend fun getRecipes(uuid: String): RecipeDetailResultRepository {
         try {
             val result = _recipeService.getRecipe(uuid)

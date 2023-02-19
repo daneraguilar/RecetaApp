@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapsFragment : BaseFragment() {
 
     private val _arg: MapsFragmentArgs by navArgs()
-    private lateinit var  _binding: FragmentMapsBinding
+    private lateinit var _binding: FragmentMapsBinding
 
     private val callback = OnMapReadyCallback { googleMap ->
 

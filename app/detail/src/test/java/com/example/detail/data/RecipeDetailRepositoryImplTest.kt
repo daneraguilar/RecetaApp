@@ -15,7 +15,7 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class RecipeDetailRepositoryImplTest: TestCase() {
+class RecipeDetailRepositoryImplTest : TestCase() {
 
     @Mock
     private lateinit var _recipeDetailRemote: RecipeDetailRemote

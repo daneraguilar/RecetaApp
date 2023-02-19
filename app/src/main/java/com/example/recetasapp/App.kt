@@ -16,7 +16,7 @@ class App : Application() {
         MultiDex.install(this)
         startKoin {
             androidContext(this@App.baseContext)
-            modules(listOf(SearchModule,DetailModule))
+            modules(listOf(SearchModule, DetailModule))
         }
     }
 }

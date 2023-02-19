@@ -1,9 +1,10 @@
 package com.example.search.domin
 
-import com.example.common.*
+import com.example.common.DEFAULT_ERROR_MESSAGE
+import com.example.common.Result
+import com.example.common.ResultRepositoryError
+import com.example.common.ResultUseCaseError
 import com.example.search.SearchTestFactory
-import com.example.search.data.RecipeRepositoryImpl
-import com.example.search.data.datasource.RecipeRemote
 import com.example.search.domain.GetRecipesUseCase
 import com.example.search.domain.RecipeRepository
 import junit.framework.TestCase
@@ -17,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 
 @RunWith(MockitoJUnitRunner::class)
-internal class GetRecipesUseCaseTest: TestCase(){
+internal class GetRecipesUseCaseTest : TestCase() {
 
     @Mock
     private lateinit var _repository: RecipeRepository
@@ -44,11 +45,13 @@ internal class GetRecipesUseCaseTest: TestCase(){
 
         }
     }
+
     @Test
     fun `when get recipes with out internet then  return Network error`() {
         runBlocking {
 
-            Mockito.`when`(_repository.getRecipes()).thenReturn(Result.Failure(ResultRepositoryError.NetworkError))
+            Mockito.`when`(_repository.getRecipes())
+                .thenReturn(Result.Failure(ResultRepositoryError.NetworkError))
 
             when (val result = _getRecipesUseCase()) {
 
@@ -65,8 +68,13 @@ internal class GetRecipesUseCaseTest: TestCase(){
     fun `when get recipes with unknow error then  return unKnow error`() {
         runBlocking {
 
-            Mockito.`when`(_repository.getRecipes()).thenReturn(Result.Failure(ResultRepositoryError.UnKnowError(
-                DEFAULT_ERROR_MESSAGE)))
+            Mockito.`when`(_repository.getRecipes()).thenReturn(
+                Result.Failure(
+                    ResultRepositoryError.UnKnowError(
+                        DEFAULT_ERROR_MESSAGE
+                    )
+                )
+            )
 
             when (val result = _getRecipesUseCase()) {
 

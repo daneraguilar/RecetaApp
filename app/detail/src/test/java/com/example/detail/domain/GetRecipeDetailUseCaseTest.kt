@@ -15,7 +15,7 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-internal class GetRecipeDetailUseCaseTest: TestCase() {
+internal class GetRecipeDetailUseCaseTest : TestCase() {
 
     @Mock
     private lateinit var _repositoryDetail: RecipeDetailRepository
@@ -42,11 +42,13 @@ internal class GetRecipeDetailUseCaseTest: TestCase() {
 
         }
     }
+
     @Test
     fun `when get recipe with out internet then  return Network error`() {
         runBlocking {
             val uuid = "c0e7f934-8c44-11ed-a1eb-0242ac120004"
-            Mockito.`when`(_repositoryDetail.getRecipe(uuid)).thenReturn(Result.Failure(ResultRepositoryError.NetworkError))
+            Mockito.`when`(_repositoryDetail.getRecipe(uuid))
+                .thenReturn(Result.Failure(ResultRepositoryError.NetworkError))
 
             when (val result = _getRecipeDetailUseCase(uuid)) {
 
@@ -67,8 +69,10 @@ internal class GetRecipeDetailUseCaseTest: TestCase() {
             Mockito.`when`(_repositoryDetail.getRecipe(uuid)).thenReturn(
                 Result.Failure(
                     ResultRepositoryError.UnKnowError(
-                DEFAULT_ERROR_MESSAGE
-                    )))
+                        DEFAULT_ERROR_MESSAGE
+                    )
+                )
+            )
 
             when (val result = _getRecipeDetailUseCase(uuid)) {
 

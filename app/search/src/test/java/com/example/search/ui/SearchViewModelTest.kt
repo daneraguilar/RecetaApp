@@ -3,6 +3,8 @@ package com.example.search.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.common.DEFAULT_ERROR_MESSAGE
+import com.example.common.Result
+import com.example.common.ResultUseCaseError
 import com.example.search.MainCoroutineRule
 import com.example.search.SearchTestFactory
 import com.example.search.domain.GetRecipesUseCase
@@ -18,12 +20,10 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
-import com.example.common.Result
-import com.example.common.ResultUseCaseError
 
 
 @RunWith(MockitoJUnitRunner::class)
-internal class SearchViewModelTest: TestCase() {
+internal class SearchViewModelTest : TestCase() {
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()

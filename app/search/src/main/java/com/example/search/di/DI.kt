@@ -31,9 +31,9 @@ val SearchModule = module {
             .create(RecipeService::class.java)
     }
 
-    single<NetworkManagerState>(override = true) { NetworkManagerStateImpl(androidContext())}
+    single<NetworkManagerState>(override = true) { NetworkManagerStateImpl(androidContext()) }
     single<RecipeRemote> { RecipeRemoteImpl(get()) }
-    single<RecipeRepository> { RecipeRepositoryImpl(get(),get()) }
+    single<RecipeRepository> { RecipeRepositoryImpl(get(), get()) }
 
     single { GetRecipesUseCase(get()) }
     viewModel { SearchViewModel(get()) }

@@ -1,5 +1,6 @@
 package com.example.search.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,11 +46,13 @@ class RecipeAdapter(
 
     override fun getItemCount(): Int = getFilteredList(recipes, filter).size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(users: List<Recipe>) {
         this.recipes = users.toMutableList()
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun filterRecipes(filterText: String) {
         filter = filterText
         notifyDataSetChanged()
@@ -58,4 +61,4 @@ class RecipeAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binder = RecipeListItemBinding.bind(view)
     }
-    }
+}

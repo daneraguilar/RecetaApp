@@ -32,7 +32,7 @@ internal class RecipeRemoteImplTest : TestCase() {
             val list = SearchTestFactory.getListRecipes()
             Mockito.`when`(_recipeService.getRecipes()).thenReturn(Response.success(list))
 
-            when (val result =_recipeRemote.getRecipes()) {
+            when (val result = _recipeRemote.getRecipes()) {
 
                 is Result.Success -> {
                     assertEquals(result.value.size, expect)
@@ -42,12 +42,14 @@ internal class RecipeRemoteImplTest : TestCase() {
 
         }
     }
+
     @Test
     fun `when get recipes  with error un authorized return default message`() {
         runBlocking {
-            Mockito.`when`(_recipeService.getRecipes()).thenReturn(Response.error(401,SearchTestFactory.rawResponse()))
+            Mockito.`when`(_recipeService.getRecipes())
+                .thenReturn(Response.error(401, SearchTestFactory.rawResponse()))
 
-            when (val result =_recipeRemote.getRecipes()) {
+            when (val result = _recipeRemote.getRecipes()) {
 
                 is Result.Success -> {
                     assert(false)
@@ -57,12 +59,14 @@ internal class RecipeRemoteImplTest : TestCase() {
 
         }
     }
+
     @Test
     fun `when get recipes  with error un know return un know error`() {
         runBlocking {
-            Mockito.`when`(_recipeService.getRecipes()).thenReturn(Response.error(500,SearchTestFactory.rawResponse()))
+            Mockito.`when`(_recipeService.getRecipes())
+                .thenReturn(Response.error(500, SearchTestFactory.rawResponse()))
 
-            when (val result =_recipeRemote.getRecipes()) {
+            when (val result = _recipeRemote.getRecipes()) {
 
                 is Result.Success -> {
                     assert(false)

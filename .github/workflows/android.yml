@@ -21,7 +21,19 @@ jobs:
           cache: gradle
       - name: Touch local properties
         run: touch local.properties
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
       - name: Build with Gradle
         run: ./gradlew assemble
+
+      - name: Unit Test
+        run: ./gradlew testDebugUnitTest
+
+      - name: Android TesT Report
+        use: ./gradlew assemble
+
+      - name: Android Test Report
+        uses: asadmansr/android-test-report-action@v1.2.0
+        if: ${{ always() }}
